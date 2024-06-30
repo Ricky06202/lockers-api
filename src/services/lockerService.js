@@ -1,13 +1,60 @@
-import lockers from '../database/Locker.js';
+import lockersUTP from "../database/LockersUTP.js"
 
 const obtenerTodosLosLockers = () => {
-	const todosLosLockers = lockers.obtenerTodosLosLockers()
-	return todosLosLockers
+	return new Promise((resolve, reject) => {
+		lockersUTP.getConnection((err, connection) => {
+			if (err) {
+				reject(err)
+				return
+			}
+
+			const query = `
+			SELECT l.id_locker, l.nombre_locker, l.clave, d.estado, s.nombre_sector, s.descripcion 
+			FROM locker as l 
+			JOIN disponible as d on l.id_disponible = d.id_disponible 
+			JOIN sector as s on l.id_sector = s.id_sector
+			`
+
+			connection.query(query, (err, results) => {
+				connection.release() // Release the connection back to the pool
+				if (err) {
+					reject(err)
+				} else {
+					resolve(results)
+				}
+			})
+		})
+	})
 }
+
 const obtenerUnLocker = (lockerID) => {
-	const locker = lockers.obtenerUnLocker(lockerID)
-	return locker
+	return new Promise((resolve, reject) => {
+		lockersUTP.getConnection((err, connection) => {
+			if (err) {
+				reject(err)
+				return
+			}
+
+			const query = `
+			SELECT l.id_locker, l.nombre_locker, l.clave, d.estado, s.nombre_sector, s.descripcion 
+			FROM locker as l 
+			JOIN disponible as d on l.id_disponible = d.id_disponible 
+			JOIN sector as s on l.id_sector = s.id_sector
+			WHERE l.id_locker = ${lockerID}
+			`
+
+			connection.query(query, (err, results) => {
+				connection.release() // Release the connection back to the pool
+				if (err) {
+					reject(err)
+				} else {
+					resolve(results)
+				}
+			})
+		})
+	})
 }
+
 const actualizarUnLocker = (lockerID) => {
 	return
 }

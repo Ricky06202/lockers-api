@@ -1,8 +1,10 @@
 import { createPool } from 'mysql'
 
-export const db = createPool({
+const lockersUTP = createPool({
 	host: 'localhost',
 	user: 'root',
 	password: '',
 	database: 'lockersutp',
 })
+
+export default lockersUTP
