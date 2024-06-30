@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import {obtenerTodosLosLockers, obtenerUnLocker, actualizarUnLocker} from '../controllers/lockerController';
+import lockerController from '../controllers/lockerController.js';
 
 const router = Router()
 
 router
-	.get('/', obtenerTodosLosLockers)
-	.get('/:lockerID', obtenerUnLocker)
-	.patch('/:lockerID', actualizarUnLocker)
+	.get('/', lockerController.obtenerTodosLosLockers)
+	.get('/:lockerID', lockerController.obtenerUnLocker)
+	.patch('/:lockerID', lockerController.actualizarUnLocker)
 
-	module.exports = router
+export default router

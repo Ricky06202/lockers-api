@@ -1,4 +1,4 @@
-import lockers from '../database/Locker';
+import lockers from '../database/Locker.js';
 
 const obtenerTodosLosLockers = () => {
 	const todosLosLockers = lockers.obtenerTodosLosLockers()
@@ -13,7 +13,7 @@ const actualizarUnLocker = (lockerID) => {
 }
 
 
-module.exports = {
+export default {
 	obtenerTodosLosLockers,
 	obtenerUnLocker,
 	actualizarUnLocker,

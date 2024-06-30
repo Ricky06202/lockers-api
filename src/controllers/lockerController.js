@@ -1,4 +1,4 @@
-import lockerService from '../services/lockerService'
+import lockerService from '../services/lockerService.js'
 
 const obtenerTodosLosLockers = (req, res) => {
 	lockerService
@@ -45,10 +45,8 @@ const actualizarUnLocker = (req, res) => {
 		})
 }
 
-module.exports = {
+export default {
 	obtenerTodosLosLockers,
 	obtenerUnLocker,
-	crearNuevoLocker,
 	actualizarUnLocker,
-	borrarUnLocker,
 }
