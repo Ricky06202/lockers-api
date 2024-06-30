@@ -1,10 +1,10 @@
 import { Router } from "express"
-// import 
+import usuarioController from "../controllers/usuarioController.js"
 
 const router = Router()
 
 router
-	.get('/:usuarioID',)
-	.get('/:usuario/:clave',)
+	// .get('/:usuarioID', usuarioController.obtenerUsuarioPorID)
+	.get('/:usuario/:clave', usuarioController.verificarCredenciales)
 
-module.exports = router
+export default router

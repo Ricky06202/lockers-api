@@ -1,11 +1,4 @@
-const mysql = require('mysql')
-
-const db = mysql.createPool({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'lockersutp',
-})
+import { db } from "./Conexion.js"
 
 const obtenerUsuarioPorID = (usuarioID) => {
 	return new Promise((resolve, reject) => {
@@ -62,7 +55,7 @@ const verificarCredenciales = (usuario, clave) => {
 	})
 }
 
-module.exports = {
+export default {
 	obtenerUsuarioPorID,
 	verificarCredenciales
 }

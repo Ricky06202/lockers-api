@@ -1,11 +1,4 @@
-import { createPool } from 'mysql'
-
-const db = createPool({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'lockersutp',
-})
+import { db } from "./Conexion.js"
 
 const obtenerTodosLosLockers = () => {
 	return new Promise((resolve, reject) => {
