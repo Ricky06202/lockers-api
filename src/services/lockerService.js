@@ -55,9 +55,32 @@ const obtenerUnLocker = (lockerID) => {
 	})
 }
 
-const actualizarUnLocker = (lockerID) => {
-	return
+const actualizarUnLocker = (lockerID, disponibleID) => {
+	return new Promise((resolve, reject) => {
+		lockersUTP.getConnection((err, connection) => {
+			if (err) {
+				reject(err)
+				return
+			}
+
+			const query = `
+			UPDATE locker 
+			SET id_disponible=${disponibleID}
+			WHERE id_locker = ${lockerID}
+			`
+
+			connection.query(query, (err, results) => {
+				connection.release() // Release the connection back to the pool
+				if (err) {
+					reject(err)
+				} else {
+					resolve(results)
+				}
+			})
+		})
+	})
 }
+
 
 
 export default {

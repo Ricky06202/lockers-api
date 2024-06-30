@@ -1,10 +1,10 @@
 import { Router } from "express"
 import usuarioController from "../controllers/usuarioController.js"
 
-const router = Router()
+const usuarioRouter = Router()
 
-router
+usuarioRouter
 	.get('/:usuarioID', usuarioController.obtenerUsuarioPorID)
 	.get('/:usuario/:clave', usuarioController.verificarCredenciales)
 
-export default router
+export default usuarioRouter

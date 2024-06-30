@@ -30,13 +30,12 @@ const obtenerUnLocker = (req, res) => {
 
 const actualizarUnLocker = (req, res) => {
 	const {
-		params: { lockerID },
+		params: { lockerID, disponibilidadID },
 	} = req
 
-	if (!lockerID) return
 
 	lockerService
-		.actualizarUnLocker(lockerID)
+		.actualizarUnLocker(lockerID, disponibilidadID)
 		.then((locker) => {
 			res.send({ status: 'OK', data: locker })
 		})
