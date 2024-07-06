@@ -34,7 +34,45 @@ function verificarCredenciales(req, res) {
 		})
 }
 
+function buscarUsuario(req, res) {
+	const {
+		params: { usuario },
+	} = req
+
+	if (!usuario) return
+
+	usuarioService
+		.buscarUsuario(usuario)
+		.then((usuarioID) => {
+			res.send({ status: 'OK', data: usuarioID })
+		})
+		.catch((err) => {
+			res.send({ status: 'ERROR', data: err })
+		})
+}
+
+function crearNuevoUsuario(req, res) {
+	const {
+		params: { usuario, clave, nombre_completo, sexo, tipo, cedula, correo, telefono },
+	} = req
+
+	if (!usuario || !clave || !nombre_completo || !sexo || !tipo || !cedula || !correo || !telefono) return
+
+	usuarioService
+		.crearNuevoUsuario(usuario, clave, nombre_completo, sexo, tipo, cedula, correo, telefono)
+		.then((nuevoUsuario) => {
+			res.send({ status: 'OK', data: nuevoUsuario })
+		})
+		.catch((err) => {
+			res.send({ status: 'ERROR', data: err })
+		})
+}
+
+
+
 export default {
 	obtenerUsuarioPorID,
-	verificarCredenciales
+	verificarCredenciales,
+	buscarUsuario,
+	crearNuevoUsuario,
 }
